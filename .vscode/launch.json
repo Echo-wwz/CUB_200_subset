@@ -1,0 +1,144 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "★ 环境自检（先跑这个）",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/env_check.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": false
+        },
+        {
+            "name": "0. 数据准备（6:2:2 划分 + annotations.json）",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/prepare_data.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": false
+        },
+        {
+            "name": "1. 阶段 2a 图像单模态（ResNet18）",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/01_image_only.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": false
+        },
+        {
+            "name": "1b. 阶段 2a 图像单模态（MobileNetV2）",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/01_image_only.py",
+            "args": [
+                "--backbone",
+                "mobilenet_v2"
+            ],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": false
+        },
+        {
+            "name": "2. 阶段 2b 文本单模态（BERT）",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/02_text_only.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": false
+        },
+        {
+            "name": "3. 阶段 3 模型拆解与特征分析",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/03_model_dissection.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": false
+        },
+        {
+            "name": "4. 阶段 4 多模态融合 + 消融（四种融合）",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/04_multimodal_fusion.py",
+            "args": [
+                "--fusion",
+                "all"
+            ],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": false
+        },
+        {
+            "name": "4b. 阶段 4 只看跨模态注意力融合",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/04_multimodal_fusion.py",
+            "args": [
+                "--fusion",
+                "attention"
+            ],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": false
+        },
+        {
+            "name": "5. 阶段 5 CLIP 零样本 + 检索",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/05_clip_zeroshot.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": false
+        },
+        {
+            "name": "6. 汇总报告",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/report.py",
+            "args": [
+                "--save"
+            ],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": false
+        },
+        {
+            "name": "7. 总控：只看计划",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/run_all.py",
+            "args": [
+                "--dry-run"
+            ],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": false
+        },
+        {
+            "name": "8. 总控：全部跑完",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/run_all.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": false
+        },
+        {
+            "name": "9. 冒烟测试（每阶段 2 轮）",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/run_all.py",
+            "args": [
+                "--quick",
+                "--force"
+            ],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": false
+        }
+    ]
+}

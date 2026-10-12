@@ -1,0 +1,102 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "★ 环境自检",
+            "type": "shell",
+            "command": "${command:python.interpreterPath}",
+            "args": ["env_check.py"],
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": [],
+            "group": "build"
+        },
+        {
+            "label": "类型检查（pyright，与 Pylance 同引擎）",
+            "type": "shell",
+            "command": "${command:python.interpreterPath}",
+            "args": ["-m", "pyright", "--pythonpath", "${command:python.interpreterPath}"],
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": []
+        },
+        {
+            "label": "0. 数据准备",
+            "type": "shell",
+            "command": "${command:python.interpreterPath}",
+            "args": ["prepare_data.py"],
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": []
+        },
+        {
+            "label": "1. 图像单模态 (ResNet18)",
+            "type": "shell",
+            "command": "${command:python.interpreterPath}",
+            "args": ["01_image_only.py"],
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": []
+        },
+        {
+            "label": "2. 文本单模态 (BERT)",
+            "type": "shell",
+            "command": "${command:python.interpreterPath}",
+            "args": ["02_text_only.py"],
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": []
+        },
+        {
+            "label": "3. 模型拆解",
+            "type": "shell",
+            "command": "${command:python.interpreterPath}",
+            "args": ["03_model_dissection.py"],
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": []
+        },
+        {
+            "label": "4. 多模态融合 + 消融",
+            "type": "shell",
+            "command": "${command:python.interpreterPath}",
+            "args": ["04_multimodal_fusion.py", "--fusion", "all"],
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": []
+        },
+        {
+            "label": "5. CLIP 零样本 + 检索",
+            "type": "shell",
+            "command": "${command:python.interpreterPath}",
+            "args": ["05_clip_zeroshot.py"],
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": []
+        },
+        {
+            "label": "6. 汇总报告",
+            "type": "shell",
+            "command": "${command:python.interpreterPath}",
+            "args": ["report.py", "--save"],
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": []
+        },
+        {
+            "label": "总控 --dry-run（看计划）",
+            "type": "shell",
+            "command": "${command:python.interpreterPath}",
+            "args": ["run_all.py", "--dry-run"],
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": []
+        },
+        {
+            "label": "总控 全部跑完",
+            "type": "shell",
+            "command": "${command:python.interpreterPath}",
+            "args": ["run_all.py"],
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": []
+        },
+        {
+            "label": "冒烟测试（2 轮，快速验证）",
+            "type": "shell",
+            "command": "${command:python.interpreterPath}",
+            "args": ["run_all.py", "--quick", "--force"],
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": []
+        }
+    ]
+}
